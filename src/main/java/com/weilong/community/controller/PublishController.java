@@ -1,35 +1,45 @@
 package com.weilong.community.controller;
 
-import com.weilong.community.mapper.QuestionMapper;
-import com.weilong.community.mapper.UserMapper;
+import com.weilong.community.dto.QuestionDto;
 import com.weilong.community.model.Question;
 import com.weilong.community.model.User;
+import com.weilong.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class PublishController {
-    @Autowired
-    private QuestionMapper questionMapper;
 
     @Autowired
-    private UserMapper userMapper;
+    private QuestionService questionService;
+    @GetMapping("/publish/{id}")
+    public String edit(@PathVariable(name = "id") Integer id,Model model){
+        QuestionDto question = questionService.getquestionById(id);
+        model.addAttribute("title",question.getTitle());
+        model.addAttribute("description",question.getDescription());
+        model.addAttribute("tags",question.getTag());
+        model.addAttribute("id",question.getId());
+        return "publish";
+    }
+    //跳转到发布问题页面
     @GetMapping("/publish")
     public String publish(){
         return "publish";
     }
+    //更新或插入新问题
     @PostMapping("/publish")
     public String dopublish(
             @RequestParam("title")String title,
             @RequestParam("description")String description,
             @RequestParam("tags")String tags,
+            @RequestParam(value = "id",required = false)Integer id ,
             HttpServletRequest request, Model model
             ){
         model.addAttribute("title",title);
@@ -45,19 +55,7 @@ public class PublishController {
             model.addAttribute("error","问题标签未填写");
             return "publish";
         }
-        User user=null;
-        Cookie[] cookies = request.getCookies();
-        if(cookies!=null &&cookies.length!=0)
-            for (Cookie cookie : cookies) {
-                if("token".equals(cookie.getName())){
-                    String token=cookie.getValue();
-                    user=userMapper.findUserByToken(token);
-                    if(user !=null){
-                        request.getSession().setAttribute("user",user);
-                    }
-                    break;
-                }
-            }
+        User user= (User) request.getSession().getAttribute("user");
         if(user ==null){
             model.addAttribute("error","用户未登录，请先进行登录");
             return "publish";
@@ -65,11 +63,10 @@ public class PublishController {
         Question question=new Question();
         question.setTitle(title);
         question.setDescription(description);
-        question.setGmt_create(System.currentTimeMillis());
-        question.setGmt_modify(user.getGmt_create());
         question.setAuthor(user.getId());
         question.setTag(tags);
-        questionMapper.insertQuestion(question);
+        question.setId(id);
+        questionService.insertOrUpdateQuestion(question);
         return  "redirect:/"
 ;    }
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+   <!--是否需要引入mybatis-generaotr的文件（这里已经在pom.xml文件中生成）-->
+   <!-- <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" />-->
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
+        <!--数据库配置-->
+        <jdbcConnection driverClass="org.h2.Driver"
+                        connectionURL="jdbc:h2:~/community"
+                        userId="sa"
+                        password="123">
+        </jdbcConnection>
+
+        <!--Decimal和Numeric类型的数据更好的使用-->
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!--生成实体类的路径-->
+        <javaModelGenerator targetPackage="com.weilong.community.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!--mapper文件的路径-->
+        <sqlMapGenerator targetPackage="mapper"  targetProject="src\main\resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!--客户端生成java接口和类（即dao层）-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.weilong.community.mapper"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!--数据库需要映射的表名-->
+        <table tableName="user" domainObjectName="User" ></table>
+        <table tableName="question" domainObjectName="Question" ></table>
+
+    </context>
+</generatorConfiguration>

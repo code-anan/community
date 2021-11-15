@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${question.title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <script src="/js/jquery-3.6.0.min.js" type="application/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+</head>
+<body style="background-color: #efefef">
+<div th:insert="~{navigation :: nav}"></div>
+<div class="container-fluid" style="margin: 30px;background-color: white">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12" >
+            <h4>
+                <span th:text="${question.title}"></span>
+            </h4>
+            <span class="text-desc" >
+                作者:<span th:text="${question.user.getName()}" style="color: #999999"></span> |
+                发布时间:<span th:text="${#dates.format(question.gmt_create,'yyyy-MM-dd')}" style="color: #999999"></span> |
+                阅读数量:<span th:text="${question.getView_count()}" style="color: #999999">个</span>
+            </span>
+            <hr>
+            <multiText th:text="${question.description}"></multiText>
+            <hr>
+            <a th:href="@{'/publish/'+${question.id}}" th:if="${session.user !=null && session.user.id==question.author}">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true" style="font-size: 15px"></span>
+                <span th:text="编辑" style="font-size: 15px"></span>
+            </a>
+
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12" style="margin-top: 20px">
+            <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: 20px">
+                <h4>发起人</h4>
+                <div class="media" >
+                    <div class="media-left">
+                        <span>
+                            <img class="media-object" th:src="${question.user.avatorUrl}" alt="我的头像" style="width: 80px;border-radius: 10px">
+                            <span th:text="${question.user.getName()}" style="font-size: 30px"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: 20px">
+                <h4>相关问题</h4>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

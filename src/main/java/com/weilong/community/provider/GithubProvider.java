@@ -6,9 +6,6 @@ import com.weilong.community.dto.GithubUserDTO;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.rmi.server.ExportException;
-
 @Component
 public class GithubProvider {
     public String getAccessToken(AccessTokenDTO accessTokenDTO){
