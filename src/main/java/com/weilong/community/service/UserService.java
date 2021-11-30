@@ -15,8 +15,6 @@ public class UserService {
 
     public void createOrUpdate(User user) {
         UserExample example = new UserExample();
-        System.out.println(user);
-        System.out.println(user.getAccountId());
         example.createCriteria().andAccountIdEqualTo(user.getAccountId());
         List<User> users = userMapper.selectByExample(example);
         if(users.size() == 0){

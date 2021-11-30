@@ -2,7 +2,6 @@ package com.weilong.community.controller;
 
 import com.weilong.community.dto.AccessTokenDTO;
 import com.weilong.community.dto.GithubUserDTO;
-import com.weilong.community.mapper.UserMapper;
 import com.weilong.community.model.User;
 import com.weilong.community.provider.GithubProvider;
 import com.weilong.community.service.UserService;
@@ -30,8 +29,6 @@ public class AuthorizeContrller {
 
     @Value("${github.redirect.uri}")
     private String redirectUri;
-    @Autowired
-    private UserMapper userMapper;
 
     @Autowired
     private UserService userService;

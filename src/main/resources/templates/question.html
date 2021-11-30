@@ -2,41 +2,137 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title th:text="${question.title}"></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <script src="/js/jquery-3.6.0.min.js" type="application/javascript"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
 </head>
+<style>
+    .hover:hover {
+        color: #499ef3;
+    }
+
+    .active {
+        color: #499ef3;
+    }
+</style>
 <body style="background-color: #efefef">
 <div th:insert="~{navigation :: nav}"></div>
 <div class="container-fluid" style="margin: 30px;background-color: white">
     <div class="row">
-        <div class="col-lg-9 col-md-12 col-sm-12" >
-            <h4>
-                <span th:text="${question.title}"></span>
-            </h4>
-            <span class="text-desc" >
+        <div class="col-lg-9 col-md-12 col-sm-12">
+            <!--问题内容-->
+            <div class="col-lg-12 col-md-12 col-sm-12" style="margin-bottom: 30px">
+                <h1>
+                    <span th:text="${question.title}"></span>
+                </h1>
+                <span class="text-desc">
                 作者:<span th:text="${question.user.getName()}" style="color: #999999"></span> |
-                发布时间:<span th:text="${#dates.format(question.gmt_create,'yyyy-MM-dd')}" style="color: #999999"></span> |
-                阅读数量:<span th:text="${question.getView_count()}" style="color: #999999">个</span>
-            </span>
-            <hr>
-            <multiText th:text="${question.description}"></multiText>
-            <hr>
-            <a th:href="@{'/publish/'+${question.id}}" th:if="${session.user !=null && session.user.id==question.author}">
-                <span class="glyphicon glyphicon-edit" aria-hidden="true" style="font-size: 15px"></span>
-                <span th:text="编辑" style="font-size: 15px"></span>
-            </a>
+                发布时间:<span th:text="${#dates.format(question.getGmtCreate(),'yyyy-MM-dd')}"
+                           style="color: #999999"></span> |
+                阅读数量:<span th:text="${question.viewCount}" style="color: #999999">个</span>
+                </span>
+                <hr>
+                <multiText th:text="${question.description}"></multiText>
+                <hr>
+                <a th:href="@{'/publish/'+${question.id}}"
+                   th:if="${session.user !=null && session.user.id==question.author}">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true" style="font-size: 15px"></span>
+                    <span th:text="编辑" style="font-size: 15px"></span>
+                </a>
+            </div>
+            <!--回复列表-->
+            <h3>
+                <span th:text="${question.commentCount}"></span>个回复
+            </h3>
+            <hr class="col-lg-12 col-md-12 col-sm-12" style="margin-top: 0">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="media" th:each="comment:${comments}">
+                    <div class="media-left">
+                        <span>
+                                <img class="media-object" th:src="${comment.user.avatorUrl}" alt="我的头像"
+                                     style="width: 50px;border-radius: 10px;display:inline-block;">
+
+                        </span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading" th:text="${comment.user.getName()}"
+                            style="color: cornflowerblue;"></h3>
+                        <div th:text="${comment.getContent()}"></div>
+                        <span class="glyphicon glyphicon-thumbs-up hover"
+                              style="margin-right: 5px;font-size: 15px;cursor: pointer;"></span>
+                        <span class="glyphicon glyphicon-comment  hover " style="font-size: 15px;cursor: pointer"
+                              th:data-id="${comment.id}" onclick="expandOrClose(this)"></span>
+                        <span th:text="${#dates.format(comment.getGmtcreate(),'yyyy-MM-dd')}"
+                              style="float: right"></span>
+                    </div>
+                    <!--二级评论-->
+                    <div class="collapse" th:id="${comment.id}" style="width: 70%;margin-left: 58px;" id="LV2Id">
+                        <div class="well">
+                            <div class="media" th:each="comment:${comments}">
+                                <div class="media-left">
+                                  <span>
+                                     <img class="media-object" th:src="${comment.user.avatorUrl}" alt="我的头像"
+                                          style="width: 50px;border-radius: 10px;display:inline-block;">
+
+                                  </span>
+                                </div>
+                                <div class="media-body">
+                                    <h3 class="media-heading" th:text="${comment.user.getName()}"
+                                        style="color: cornflowerblue;"></h3>
+                                    <div th:text="${comment.getContent()}"></div>
+                                    <span th:text="${#dates.format(comment.getGmtcreate(),'yyyy-MM-dd')}"
+                                          style="float: right"></span>
+                                </div>
+                                <hr class="col-lg-12 col-md-12 col-sm-12" style="background: #c3b7b7;">
+                            </div>
+                            <div style="margin: 15px 0;height: 50px;">
+                                <input type="text" class="form-control" placeholder="评论一下" id="LV2Comment">
+                                <button type="button" class="btn btn-success" style="float: right;margin: 8px;"
+                                        onclick="sendL2Comment(this)" th:data-id="${comment.id}">评论
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <hr>
+                </div>
+
+            </div>
+            <!--回复框内容-->
+            <div class="col-lg-12 col-md-12 col-sm-12" id="contentSection">
+                <h3>
+                    <span></span>进行回复
+                </h3>
+                <div class="media">
+                    <div class="media-left">
+                        <span>
+                                <img class="media-object" th:src="${question.user.avatorUrl}" alt="我的头像"
+                                     style="width: 50px;border-radius: 10px;display:inline-block;">
+                            <span th:text="${question.user.getName()}"
+                                  style="font-size: 15px;padding-left: 5px;"></span>
+                        </span>
+                    </div>
+                </div>
+                <input th:value="${question.id}" id="questionId" type="hidden"></input>
+                <textarea class="form-control" rows="6" style="margin: 15px 0;" id="content"
+                          placeholder="发句友善的回复~"></textarea>
+                <button type="button" class="btn btn-success" style="float: right;margin-bottom: 15px;"
+                        onclick="addComment()">回复
+                </button>
+            </div>
 
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12" style="margin-top: 20px">
             <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: 20px">
                 <h4>发起人</h4>
-                <div class="media" >
+                <div class="media">
                     <div class="media-left">
                         <span>
-                            <img class="media-object" th:src="${question.user.avatorUrl}" alt="我的头像" style="width: 80px;border-radius: 10px">
+                            <img class="media-object" th:src="${question.user.avatorUrl}" alt="我的头像"
+                                 style="width: 80px;border-radius: 10px">
                             <span th:text="${question.user.getName()}" style="font-size: 30px"></span>
                         </span>
                     </div>
@@ -50,6 +146,109 @@
         </div>
     </div>
 </div>
+<script>
+
+    //添加问题的回复
+    function addComment() {
+        var questionId = $("#questionId").val();
+        var content = $("#content").val();
+        sendRequest(questionId, content, 1);
+    }
+
+    //添加回复的复用函数
+    function sendRequest(Id, content, type) {
+            if (!content) {
+                alert("回复内容不能为空，请检查！")
+                return
+            }
+            var para = {
+                "parentid": Id,
+                "content": content,
+                "type": type
+            }
+            console.log("para=" + para)
+            $.ajax({
+                type: 'post',
+                url: "/comment",
+                data: JSON.stringify(para),
+                dataType: 'json',
+                contentType: 'application/json;charset=utf-8',
+                success: function (response) {
+                    if (response.code == 200) {
+                        window.location.reload();
+                        $("#content").val("");
+                    } else {
+                        //当提示没有登陆时
+                        if (response.code == 2002) {
+                            var conform = confirm(response.message);
+                            if (conform) {
+                                window.open("https://github.com/login/oauth/authorize?client_id=77097148036edc5ef314&redirect_url=http://localhost:8080/callback&state=1&scope=user");
+                                window.localStorage.setItem("closeable", true);
+                            } else {
+                                return;
+                            }
+                        }
+                        if (response.code == 2004) {
+                            alert(response.message);
+                        } else {
+                            alert("其他错误");
+                        }
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {//请求失败处理函数
+                    console.log("请求失败,请检查");
+                }
+            });
+
+    }
+
+    //发起二级评论
+    function sendL2Comment(e) {
+        var id = e.getAttribute("data-id");
+        var content = $("#LV2Comment").val();
+        sendRequest(id, content, 2);
+    }
+
+    //是否展示二级评论
+    function expandOrClose(e) {
+        var data = e.getAttribute("data-id");
+        console.log(data)
+        var comment = $("#" + data)
+        /*获取折叠状态*/
+        var collapse = e.getAttribute("data-collapse")
+        if (collapse) {
+            /*折叠状态*/
+            comment.removeClass("in");
+            e.removeAttribute("data-collapse")
+            e.classList.remove("active")
+        } else {
+            /*展开状态*/
+            getLV2Comment(data)
+            comment.addClass("in");
+            e.setAttribute("data-collapse", "in");
+            e.classList.add("active")
+        }
+
+    }
+
+    //获取此评论的二级评论
+    function getLV2Comment(data) {
+        console.log("我是id为" + data + "的一级评论")
+        $.ajax({
+            type: 'get',
+            url: "/comment/" + data,
+            dataType: 'json',
+            contentType: 'application/json;charset=utf-8',
+            success: function (response) {
+                console.log(response)
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {//请求失败处理函数
+                console.log("请求失败,请检查");
+            }
+        });
+    }
+
+</script>
 
 </body>
 </html>
