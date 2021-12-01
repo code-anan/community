@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <script src="/js/jquery-3.6.0.min.js" type="application/javascript"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/moment.js" type="application/javascript"></script>
 </head>
 <style>
     .hover:hover {
@@ -63,38 +64,20 @@
                         <span class="glyphicon glyphicon-thumbs-up hover"
                               style="margin-right: 5px;font-size: 15px;cursor: pointer;"></span>
                         <span class="glyphicon glyphicon-comment  hover " style="font-size: 15px;cursor: pointer"
-                              th:data-id="${comment.id}" onclick="expandOrClose(this)"></span>
+                              th:data-id="${comment.id}" onclick="expandOrClose(this)" ></span>
+                        <span th:text="${comment.getCommentcount()}" style="vertical-align: text-bottom;"></span>
                         <span th:text="${#dates.format(comment.getGmtcreate(),'yyyy-MM-dd')}"
                               style="float: right"></span>
                     </div>
                     <!--二级评论-->
-                    <div class="collapse" th:id="${comment.id}" style="width: 70%;margin-left: 58px;" id="LV2Id">
-                        <div class="well">
-                            <div class="media" th:each="comment:${comments}">
-                                <div class="media-left">
-                                  <span>
-                                     <img class="media-object" th:src="${comment.user.avatorUrl}" alt="我的头像"
-                                          style="width: 50px;border-radius: 10px;display:inline-block;">
+                    <div class="collapse " th:id="${'comment_'+comment.id}" style="width: 70%;margin-left: 58px;" id="LV2Id">
 
-                                  </span>
-                                </div>
-                                <div class="media-body">
-                                    <h3 class="media-heading" th:text="${comment.user.getName()}"
-                                        style="color: cornflowerblue;"></h3>
-                                    <div th:text="${comment.getContent()}"></div>
-                                    <span th:text="${#dates.format(comment.getGmtcreate(),'yyyy-MM-dd')}"
-                                          style="float: right"></span>
-                                </div>
-                                <hr class="col-lg-12 col-md-12 col-sm-12" style="background: #c3b7b7;">
-                            </div>
                             <div style="margin: 15px 0;height: 50px;">
-                                <input type="text" class="form-control" placeholder="评论一下" id="LV2Comment">
+                                <input type="text" class="form-control" placeholder="评论一下" th:id="${'input_'+comment.id}" style="margin-left: 14px;">
                                 <button type="button" class="btn btn-success" style="float: right;margin: 8px;"
                                         onclick="sendL2Comment(this)" th:data-id="${comment.id}">评论
                                 </button>
                             </div>
-
-                        </div>
 
                     </div>
                     <hr>
@@ -159,7 +142,7 @@
     function sendRequest(Id, content, type) {
             if (!content) {
                 alert("回复内容不能为空，请检查！")
-                return
+                return;
             }
             var para = {
                 "parentid": Id,
@@ -205,15 +188,14 @@
     //发起二级评论
     function sendL2Comment(e) {
         var id = e.getAttribute("data-id");
-        var content = $("#LV2Comment").val();
+        var content = $("#input_"+id).val();
         sendRequest(id, content, 2);
     }
 
     //是否展示二级评论
     function expandOrClose(e) {
-        var data = e.getAttribute("data-id");
-        console.log(data)
-        var comment = $("#" + data)
+        var id = e.getAttribute("data-id");
+        var comment = $("#comment_" + id)
         /*获取折叠状态*/
         var collapse = e.getAttribute("data-collapse")
         if (collapse) {
@@ -222,31 +204,58 @@
             e.removeAttribute("data-collapse")
             e.classList.remove("active")
         } else {
-            /*展开状态*/
-            getLV2Comment(data)
-            comment.addClass("in");
-            e.setAttribute("data-collapse", "in");
-            e.classList.add("active")
+            if(comment.children().length != 1){
+                comment.addClass("in");
+                e.setAttribute("data-collapse", "in");
+                e.classList.add("active")
+            }else{
+                /*展开状态*/
+                $.getJSON("/comment/"+id,function (data) {
+                    console.log(data)
+                    $.each(data.reverse(), function (index, commentlists) {
+                        var mediaLeftElement = $("<div/>", {
+                            "class": "media-left"
+                        }).append($("<img/>", {
+                            "style": "width:50px",
+                            "class": "media-object img-rounded",
+                            "src": commentlists.user.avatorUrl
+                        }));
+
+                        var mediaBodyElement = $("<div/>", {
+                            "class": "media-body"
+                        }).append($("<h5/>", {
+                            "class": "media-heading",
+                            "html": commentlists.user.name
+                        })).append($("<div/>", {
+                            "html": commentlists.content
+                        })).append($("<div/>", {
+                            "class": "menu"
+                        }).append($("<span/>", {
+                            "class": "pull-right",
+                            "html": moment(commentlists.gmtCreate).format('YYYY-MM-DD')
+                        })));
+
+                        var mediaElement = $("<div/>", {
+                            "class": "media well"
+                        }).append(mediaLeftElement).append(mediaBodyElement);
+
+                        var commentElement = $("<div/>", {
+                            "class": "col-lg-12 col-md-12 col-sm-12 col-xs-12 comments"
+                        }).append(mediaElement);
+
+                        comment.prepend(commentElement);
+                    });
+                    comment.addClass("in");
+                    e.setAttribute("data-collapse", "in");
+                    e.classList.add("active")
+                });
+            }
+
         }
 
     }
 
-    //获取此评论的二级评论
-    function getLV2Comment(data) {
-        console.log("我是id为" + data + "的一级评论")
-        $.ajax({
-            type: 'get',
-            url: "/comment/" + data,
-            dataType: 'json',
-            contentType: 'application/json;charset=utf-8',
-            success: function (response) {
-                console.log(response)
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {//请求失败处理函数
-                console.log("请求失败,请检查");
-            }
-        });
-    }
+
 
 </script>
 

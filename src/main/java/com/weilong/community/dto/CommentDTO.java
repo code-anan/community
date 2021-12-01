@@ -12,6 +12,15 @@ public class CommentDTO {
     private Integer likecount;
     private String content;
     private User user;
+    private Integer commentcount;
+
+    public Integer getCommentcount() {
+        return commentcount;
+    }
+
+    public void setCommentcount(Integer commentcount) {
+        this.commentcount = commentcount;
+    }
 
     public Integer getId() {
         return id;

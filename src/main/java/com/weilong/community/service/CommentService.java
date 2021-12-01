@@ -3,10 +3,7 @@ package com.weilong.community.service;
 import com.weilong.community.dto.CommentDTO;
 import com.weilong.community.enums.CommentTypeEnum;
 import com.weilong.community.exception.BusinessException;
-import com.weilong.community.mapper.CommentMapper;
-import com.weilong.community.mapper.QuestionExtMapper;
-import com.weilong.community.mapper.QuestionMapper;
-import com.weilong.community.mapper.UserMapper;
+import com.weilong.community.mapper.*;
 import com.weilong.community.model.Comment;
 import com.weilong.community.model.CommentExample;
 import com.weilong.community.model.Question;
@@ -33,6 +30,9 @@ public class CommentService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private CommentExtMapper commentExtMapper;
+
     @Transactional
     public void insert(Comment record, Integer type) {
         //异常的判断处理
@@ -58,6 +58,8 @@ public class CommentService {
                 throw new BusinessException(2005, "回复的评论不存在！");
             }
             commentMapper.insert(record);
+            comment.setCommentcount(1);
+            commentExtMapper.incCommentCount(comment);
         }
 
     }

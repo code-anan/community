@@ -42,11 +42,10 @@ public class CommentController {
         commentService.insert(record,commentDTO.getType());
         return new ResultDTO(200,"添加成功");
     }
-
+    @ResponseBody
     @GetMapping("/comment/{id}")
-    public String getCommentsComments(@PathVariable(name="id") Integer id,Model model){
+    public List<CommentDTO> getCommentsComments(@PathVariable(name="id") Integer id){
         List<CommentDTO> commentscomments=commentService.getCommentsListById(id, CommentTypeEnum.COMMENT.getType());
-        model.addAttribute("LV2Comments",commentscomments);
-        return "question";
+        return commentscomments;
     }
 }
