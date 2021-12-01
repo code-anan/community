@@ -64,21 +64,21 @@
                         <span class="glyphicon glyphicon-thumbs-up hover"
                               style="margin-right: 5px;font-size: 15px;cursor: pointer;"></span>
                         <span class="glyphicon glyphicon-comment  hover " style="font-size: 15px;cursor: pointer"
-                              th:data-id="${comment.id}" onclick="expandOrClose(this)" ></span>
+                              th:data-id="${comment.id}" onclick="expandOrClose(this)"></span>
                         <span th:text="${comment.getCommentcount()}" style="vertical-align: text-bottom;"></span>
                         <span th:text="${#dates.format(comment.getGmtcreate(),'yyyy-MM-dd')}"
                               style="float: right"></span>
                     </div>
                     <!--二级评论-->
-                    <div class="collapse " th:id="${'comment_'+comment.id}" style="width: 70%;margin-left: 58px;" id="LV2Id">
-
-                            <div style="margin: 15px 0;height: 50px;">
-                                <input type="text" class="form-control" placeholder="评论一下" th:id="${'input_'+comment.id}" style="margin-left: 14px;">
-                                <button type="button" class="btn btn-success" style="float: right;margin: 8px;"
-                                        onclick="sendL2Comment(this)" th:data-id="${comment.id}">评论
-                                </button>
-                            </div>
-
+                    <div class="collapse " th:id="${'comment_'+comment.id}" style="width: 70%;margin-left: 58px;"
+                         id="LV2Id">
+                        <div style="margin: 15px 0;height: 50px;">
+                            <input type="text" class="form-control" placeholder="评论一下" th:id="${'input_'+comment.id}"
+                                   style="margin-left: 14px;">
+                            <button type="button" class="btn btn-success" style="float: right;margin: 8px;"
+                                    onclick="sendL2Comment(this)" th:data-id="${comment.id}">评论
+                            </button>
+                        </div>
                     </div>
                     <hr>
                 </div>
@@ -131,7 +131,7 @@
 </div>
 <script>
 
-    //添加问题的回复
+    //发起问题的回复
     function addComment() {
         var questionId = $("#questionId").val();
         var content = $("#content").val();
@@ -140,55 +140,55 @@
 
     //添加回复的复用函数
     function sendRequest(Id, content, type) {
-            if (!content) {
-                alert("回复内容不能为空，请检查！")
-                return;
-            }
-            var para = {
-                "parentid": Id,
-                "content": content,
-                "type": type
-            }
-            console.log("para=" + para)
-            $.ajax({
-                type: 'post',
-                url: "/comment",
-                data: JSON.stringify(para),
-                dataType: 'json',
-                contentType: 'application/json;charset=utf-8',
-                success: function (response) {
-                    if (response.code == 200) {
-                        window.location.reload();
-                        $("#content").val("");
-                    } else {
-                        //当提示没有登陆时
-                        if (response.code == 2002) {
-                            var conform = confirm(response.message);
-                            if (conform) {
-                                window.open("https://github.com/login/oauth/authorize?client_id=77097148036edc5ef314&redirect_url=http://localhost:8080/callback&state=1&scope=user");
-                                window.localStorage.setItem("closeable", true);
-                            } else {
-                                return;
-                            }
-                        }
-                        if (response.code == 2004) {
-                            alert(response.message);
+        if (!content) {
+            alert("回复内容不能为空，请检查！")
+            return;
+        }
+        var para = {
+            "parentid": Id,
+            "content": content,
+            "type": type
+        }
+        console.log("para=" + para)
+        $.ajax({
+            type: 'post',
+            url: "/comment",
+            data: JSON.stringify(para),
+            dataType: 'json',
+            contentType: 'application/json;charset=utf-8',
+            success: function (response) {
+                if (response.code == 200) {
+                    window.location.reload();
+                    $("#content").val("");
+                } else {
+                    //当提示没有登陆时
+                    if (response.code == 2002) {
+                        var conform = confirm(response.message);
+                        if (conform) {
+                            window.open("https://github.com/login/oauth/authorize?client_id=77097148036edc5ef314&redirect_url=http://localhost:8080/callback&state=1&scope=user");
+                            window.localStorage.setItem("closeable", true);
                         } else {
-                            alert("其他错误");
+                            return;
                         }
                     }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {//请求失败处理函数
-                    console.log("请求失败,请检查");
+                    if (response.code == 2004) {
+                        alert(response.message);
+                    } else {
+                        alert("其他错误");
+                    }
                 }
-            });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {//请求失败处理函数
+                console.log("请求失败,请检查");
+            }
+        });
 
     }
 
     //发起二级评论
     function sendL2Comment(e) {
         var id = e.getAttribute("data-id");
-        var content = $("#input_"+id).val();
+        var content = $("#input_" + id).val();
         sendRequest(id, content, 2);
     }
 
@@ -204,13 +204,13 @@
             e.removeAttribute("data-collapse")
             e.classList.remove("active")
         } else {
-            if(comment.children().length != 1){
+            if (comment.children().length != 1) {
                 comment.addClass("in");
                 e.setAttribute("data-collapse", "in");
                 e.classList.add("active")
-            }else{
+            } else {
                 /*展开状态*/
-                $.getJSON("/comment/"+id,function (data) {
+                $.getJSON("/comment/" + id, function (data) {
                     console.log(data)
                     $.each(data.reverse(), function (index, commentlists) {
                         var mediaLeftElement = $("<div/>", {
@@ -254,8 +254,6 @@
         }
 
     }
-
-
 
 </script>
 
