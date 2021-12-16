@@ -21,7 +21,7 @@ import java.util.List;
 public class CommentController {
     @Autowired
     private CommentService commentService;
-
+    //新增评论（一级评论和二级评论）
     @ResponseBody
     @PostMapping("/comment")
     public Object addComment(@RequestBody CommentCreateDTO commentDTO, HttpServletRequest request){
@@ -42,6 +42,10 @@ public class CommentController {
         commentService.insert(record,commentDTO.getType());
         return new ResultDTO(200,"添加成功");
     }
+
+
+
+    //获取二级评论数据
     @ResponseBody
     @GetMapping("/comment/{id}")
     public List<CommentDTO> getCommentsComments(@PathVariable(name="id") Integer id){

@@ -1,8 +1,10 @@
 package com.weilong.community.controller;
 
 import com.weilong.community.dto.QuestionDto;
+import com.weilong.community.dto.TagDTO;
 import com.weilong.community.model.Question;
 import com.weilong.community.model.User;
+import com.weilong.community.provider.TagProvider;
 import com.weilong.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +15,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class PublishController {
 
     @Autowired
     private QuestionService questionService;
+    //获取的标签集合
+    List<TagDTO> tagList = TagProvider.getTagList();
+    //编辑问题
     @GetMapping("/publish/{id}")
     public String edit(@PathVariable(name = "id") Integer id,Model model){
         QuestionDto question = questionService.getquestionById(id);
@@ -26,11 +32,13 @@ public class PublishController {
         model.addAttribute("description",question.getDescription());
         model.addAttribute("tags",question.getTag());
         model.addAttribute("id",question.getId());
+        model.addAttribute("taglist",tagList);
         return "publish";
     }
     //跳转到发布问题页面
     @GetMapping("/publish")
-    public String publish(){
+    public String publish(Model model){
+        model.addAttribute("taglist",tagList);
         return "publish";
     }
     //更新或插入新问题
@@ -45,6 +53,7 @@ public class PublishController {
         model.addAttribute("title",title);
         model.addAttribute("description",description);
         model.addAttribute("tags",tags);
+        model.addAttribute("taglist",tagList);
         if("".equals(title)||title==null){
             model.addAttribute("error","问题题目未填写");
             return "publish";

@@ -9,13 +9,17 @@ import com.weilong.community.mapper.UserMapper;
 import com.weilong.community.model.Question;
 import com.weilong.community.model.QuestionExample;
 import com.weilong.community.model.User;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class QuestionService {
@@ -45,7 +49,9 @@ public class QuestionService {
         }
         paginationDto.setPagination(totalpage, page);
         Integer offset = size * (page - 1);
-        List<Question> questionList = questionMapper.selectByExampleWithBLOBsWithRowbounds(new QuestionExample(), new RowBounds(offset, size));
+        QuestionExample questionExample = new QuestionExample();
+        questionExample.setOrderByClause("GMT_CREATE desc");
+        List<Question> questionList = questionMapper.selectByExampleWithBLOBsWithRowbounds(questionExample, new RowBounds(offset, size));
         List<QuestionDto> questionDtoList = new ArrayList<>();
         for (Question question : questionList) {
             User user = userMapper.selectByPrimaryKey(question.getAuthor());
@@ -114,6 +120,9 @@ public class QuestionService {
             //新建问题
             question.setGmtCreate(System.currentTimeMillis());
             question.setGmtModify(question.getGmtCreate());
+            question.setLikeCount(0);
+            question.setViewCount(0);
+            question.setCommentCount(0);
             questionMapper.insert(question);
         } else {
             //更新问题
@@ -133,5 +142,26 @@ public class QuestionService {
         question.setId(id);
         question.setViewCount(1);
         questionExtMapper.incView(question);
+    }
+    //获取相关问题
+    public List<QuestionDto> getLativeQuestions(QuestionDto questionDto) {
+        if(StringUtils.isBlank(questionDto.getTag())){
+            return new ArrayList<>();
+        }
+        String[] tags = StringUtils.split(questionDto.getTag(), ",");
+        String resulttag = Arrays.stream(tags).collect(Collectors.joining("|"));
+        Question question = new Question();
+        question.setId(questionDto.getId());
+        question.setTag(resulttag);
+        List<Question> questionList = questionExtMapper.selectRelaticeQuestions(question);
+        List<QuestionDto> resultQuestionDtoList=new ArrayList<>();
+        for(Question question1:questionList){
+            QuestionDto dto = new QuestionDto();
+            BeanUtils.copyProperties(question1,dto);
+            User user = userMapper.selectByPrimaryKey(questionDto.getAuthor());
+            dto.setUser(user);
+            resultQuestionDtoList.add(dto);
+        }
+        return resultQuestionDtoList;
     }
 }

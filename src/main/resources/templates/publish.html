@@ -5,9 +5,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/editormd.min.css">
     <script src="/js/jquery-3.6.0.min.js" type="application/javascript"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/editormd.min.js" type="application/javascript"></script>
+    <link rel="shortcut icon" href="/image/favicon.ico">
 </head>
+<script type="application/javascript">
+    window.onload=function () {
+
+       $("#cha").hide();
+    }
+</script>
 <body style="background-color: #efefef">
 <div th:insert="~{navigation :: nav}"></div>
 <div class="container-fluid" style="margin: 30px;background-color: white">
@@ -21,15 +30,72 @@
                     <label for="question">问题标题</label>
                     <input type="text" class="form-control" id="question" name="title" placeholder="请输入你的标题..." th:value="${title}">
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="question-editor">
                     <label for="textarea">问题补充（必填，请参考右方提示）</label>
-                    <textarea class="form-control" rows="10" id="textarea" name="description"  th:text="${description}"></textarea>
+                    <textarea class="form-control" rows="10" id="textarea" name="description"  th:text="${description}" style="display: none">
+
+                    </textarea>
+                    <script type="text/javascript">
+                        $(function() {
+                            var editor = editormd("question-editor", {
+                                width  : "100%",
+                                height : 350,
+                                path   : "/js/lib"
+                            });
+                        });
+                    </script>
                 </div>
                 <div class="form-group">
-                    <label for="tag">添加标签（使用,分隔即可）</label>
-                    <input type="text" class="form-control" id="tag" name="tags" placeholder="输入标签..." th:value="${tags}">
+                    <label for="tag">选择标签</label>
+                    <input type="text" class="form-control" id="tag" name="tags" placeholder="输入标签..." th:value="${tags}"
+                       onfocus="selectTagShow()"  readonly
+                    >
+                    <span  style="position: relative;float: right;margin-right: 14px;margin-top: -27px;font-size: 17px;"id="cha" onclick="clearTags()" th:text="X"></span>
+                    <!--标签栏选择-->
+                    <div id="selectTags" style="display: none">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">前端</a></li>
+                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">后端</a></li>
+                            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">移动端</a></li>
+                            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">数据库</a></li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home" style="margin-top: 5px;">
+                                <span class="label label-info" style="margin-right: 5px;cursor: pointer;font-size: unset"
+                                      th:each="tag:${taglist.get(0).getTags()}" onclick="selectTags(this)"
+                                      th:id="${tag}" >
+
+                                    <span th:text="${tag}"></span>
+                                </span>
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="profile" style="margin-top: 5px;">
+                                 <span class="label label-info" style="margin-right: 5px;cursor: pointer;font-size: unset"
+                                       th:each="tag:${taglist.get(1).getTags()}"
+                                       onclick="selectTags(this)" th:id="${tag}" >
+
+                                    <span th:text="${tag}" ></span>
+                                </span>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="messages" style="margin-top: 5px;">
+                                 <span class="label label-info" style="margin-right: 5px;cursor: pointer;font-size: unset" th:each="tag:${taglist.get(2).getTags()}" onclick="selectTags(this)" th:id="${tag}">
+
+                                    <span th:text="${tag}" ></span>
+                                </span>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="settings" style="margin-top: 5px;">
+                                 <span class="label label-info" style="margin-right: 5px;cursor: pointer;font-size: unset" th:each="tag:${taglist.get(3).getTags()}" onclick="selectTags(this)" th:id="${tag}">
+
+                                    <span th:text="${tag}" ></span>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-                <button type="button" class="btn btn-info" th:if="${error!=null}" th:text="${error}"></button>
+                <button type="button" class="btn btn-info" th:if="${error!=null}" th:text="${error}" id="errormsg"></button>
                 <button type="submit" class="btn btn-success" style="float: right;margin-bottom: 15px;margin-top: 20px">确认发起</button>
             </form>
         </div>
@@ -43,3 +109,29 @@
 </div>
 </body>
 </html>
+<script>
+    //选择标签获得焦点才显示
+    function selectTagShow() {
+        $("#selectTags").show();
+        $("#cha").show();
+        $("#errormsg").hide();
+    }
+    //点击叉号情况标签栏内容
+    function clearTags() {
+        $("#tag").val("")
+    }
+    //选择某一标签
+    function selectTags(e) {
+        var previous=$("#tag").val()
+        if(previous){
+            if(previous.indexOf(e.id)!=-1){
+                return
+            }else{
+                $("#tag").val(previous+','+e.id)
+            }
+        }else{
+            $("#tag").val(e.id)
+        }
+    }
+
+</script>

@@ -44,4 +44,25 @@ comment on column COMMENT.TYPE is '问题回复1评论回复2';
 comment on column COMMENT.COMMENTAUTHOR is '评论人';
 
 
+create table NOTIFICATION
+(
+    ID        INT not null,
+    NOTIFIER  INT not null,
+    RECEIVER  INT not null,
+    OUTERID   INT not null,
+    TYPE      INT not null,
+    GMTCREATE BIGINT,
+    STATUS    INT default 0,
+    constraint NOTIFICATION_PK
+        primary key (ID)
+);
+
+comment on column NOTIFICATION.NOTIFIER is '发起人';
+
+comment on column NOTIFICATION.RECEIVER is '接收人';
+
+comment on column NOTIFICATION.OUTERID is '外键id';
+
+comment on column NOTIFICATION.STATUS is '0表示未读  1表示已读';
+
 

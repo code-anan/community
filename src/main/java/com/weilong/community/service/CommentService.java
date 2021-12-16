@@ -2,12 +2,11 @@ package com.weilong.community.service;
 
 import com.weilong.community.dto.CommentDTO;
 import com.weilong.community.enums.CommentTypeEnum;
+import com.weilong.community.enums.NotificationEnum;
+import com.weilong.community.enums.NotificationStatusEnum;
 import com.weilong.community.exception.BusinessException;
 import com.weilong.community.mapper.*;
-import com.weilong.community.model.Comment;
-import com.weilong.community.model.CommentExample;
-import com.weilong.community.model.Question;
-import com.weilong.community.model.User;
+import com.weilong.community.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CommentService {
@@ -33,6 +33,8 @@ public class CommentService {
     @Autowired
     private CommentExtMapper commentExtMapper;
 
+    @Autowired
+    private NotificationMapper notificationMapper;
     @Transactional
     public void insert(Comment record, Integer type) {
         //异常的判断处理
@@ -48,18 +50,41 @@ public class CommentService {
             if (question == null) {
                 throw new BusinessException(2001, "回复的问题不存在！");
             }
-            question.setCommentCount(1);
+            //增加评论
+            record.setCommentcount(0);
+            record.setLikecount(0);
             commentMapper.insert(record);
+            //问题评论数增加
+            question.setCommentCount(1);
             questionExtMapper.incCommentCount(question);
+            //提醒对象的创建
+            Notification notification = new Notification();
+            notification.setGmtcreate(System.currentTimeMillis());
+            notification.setType(NotificationEnum.NOTIFICATION_QUESTION.getType());
+            notification.setOuterid(record.getParentid());
+            notification.setNotifier(record.getCommentauthor());
+            notification.setStatus(NotificationStatusEnum.UNREAD.getStatus());
+            notification.setReceiver(question.getAuthor());
+            notificationMapper.insert(notification);
         } else if(type==CommentTypeEnum.COMMENT.getType()){
             //评论的回复
             Comment comment = commentMapper.selectByPrimaryKey(record.getParentid());
             if (comment == null) {
                 throw new BusinessException(2005, "回复的评论不存在！");
             }
+            //评论数增加
             commentMapper.insert(record);
             comment.setCommentcount(1);
             commentExtMapper.incCommentCount(comment);
+            //提醒对象创建
+            Notification notification = new Notification();
+            notification.setGmtcreate(System.currentTimeMillis());
+            notification.setType(NotificationEnum.NOTIFICATION_COMMENT.getType());
+            notification.setOuterid(record.getParentid());
+            notification.setNotifier(record.getCommentauthor());
+            notification.setStatus(NotificationStatusEnum.UNREAD.getStatus());
+            notification.setReceiver(comment.getCommentauthor());
+            notificationMapper.insert(notification);
         }
 
     }
