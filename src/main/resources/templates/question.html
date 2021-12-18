@@ -5,10 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/editormd.preview.min.css">
     <script src="/js/jquery-3.6.0.min.js" type="application/javascript"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
     <script src="/js/moment.js" type="application/javascript"></script>
-    <link rel="shortcut icon" href="/image/favicon.ico">
+    <script src="/js/editormd.min.js" type="application/javascript"></script>
+    <script src="/js/lib/marked.min.js" type="application/javascript"></script>
+    <script src="/js/lib/prettify.min.js" type="application/javascript"></script>
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
 </head>
 <style>
     .hover:hover {
@@ -36,7 +41,15 @@
                 阅读数量:<span th:text="${question.viewCount}" style="color: #999999">个</span>
                 </span>
                 <hr>
-                <multiText th:text="${question.description}"></multiText>
+                <div id="question-view">
+                    <textarea style="display:none;" th:text="${question.description}"></textarea>
+                </div>
+                <script type="text/javascript">
+                    $(function() {
+                       editormd.markdownToHTML("question-view", {});
+                    });
+                </script>
+                <!--<multiText th:text="${question.description}"></multiText>-->
                 <hr style="margin: 5px;">
                 <div class="col-lg-12 col-md-12 col-sm-12" style="padding-left: 0;">
                     <span class="label label-info" th:each="tag :${question.tag.split(',')}" style="margin-right: 5px;font-size: small;">
