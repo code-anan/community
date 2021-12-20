@@ -51,7 +51,7 @@ public class AuthorizeContrller {
             user.setName(githubUser.getName());
             user.setAccountId(String.valueOf(githubUser.getId()));
             if(githubUser.getAvatar_url()==null){
-                user.setAvatorUrl("https://cdn.jsdelivr.net/gh/code-anan/image/avator.png");
+                user.setAvatorUrl("https://img2.baidu.com/it/u=4925141,1914114694&fm=26&fmt=auto");
             }else {
                 user.setAvatorUrl(githubUser.getAvatar_url());
             }

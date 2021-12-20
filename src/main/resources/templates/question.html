@@ -137,9 +137,9 @@
                 <div class="media">
                     <div class="media-left">
                         <span>
-                            <img class="media-object" th:src="${question.user.avatorUrl}" alt="我的头像"
+                            <img class="media-object" th:src="${session.user.avatorUrl}" alt="我的头像"
                                  style="width: 80px;border-radius: 10px">
-                            <span th:text="${question.user.getName()}" style="font-size: 30px"></span>
+                            <span th:text="${session.user.getName()}" style="font-size: 30px"></span>
                         </span>
                     </div>
                 </div>
