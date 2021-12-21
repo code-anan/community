@@ -24,7 +24,7 @@ public class QuestionController {
     @GetMapping("/question/{id}")
     public String questionDetail(@PathVariable(name = "id") Integer id, Model model){
         QuestionDto questionDto=questionService.getquestionById(id);
-        List<QuestionDto> relativeQuestions=questionService.getLativeQuestions(questionDto);
+        List<QuestionDto> relativeQuestions=questionService.getRelativeQuestions(questionDto);
         List<CommentDTO> commentDTOList=commentService.getCommentsListById(id, CommentTypeEnum.QUESTION.getType());
         questionService.addViewCount(id);
         model.addAttribute("question",questionDto);

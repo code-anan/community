@@ -144,7 +144,7 @@ public class QuestionService {
         questionExtMapper.incView(question);
     }
     //获取相关问题
-    public List<QuestionDto> getLativeQuestions(QuestionDto questionDto) {
+    public List<QuestionDto> getRelativeQuestions(QuestionDto questionDto) {
         if(StringUtils.isBlank(questionDto.getTag())){
             return new ArrayList<>();
         }
