@@ -9,6 +9,8 @@
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
+        <plugin type="com.github.pagehelper.PageInterceptor"></plugin>
+
         <!--数据库配置-->
         <jdbcConnection driverClass="org.h2.Driver"
                         connectionURL="jdbc:h2:~/community"

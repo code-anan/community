@@ -77,9 +77,36 @@
                     <a th:href="@{'/question/'+${notification.outerId}}" th:text="${notification.getOuterTitle()}" th:data-id="${notification.getNotificationId()}" onclick="UnreadToRead(this)" ></a>
                     <span  th:if="${notification.getStatus()==0}" class="badge" style="background-color: red">未读</span>
                     <span  th:if="${notification.getStatus()==1}" class="badge" >已读</span>
-                    <span  th:text="${#dates.format(notification.gmtCreate,'MM-dd hh:mm:ss')}" style="float: right;font-size: larger;" ></span>
+                    <span  th:text="${#dates.format(notification.gmtCreate,'MM-dd')}" style="float: right;font-size: larger;" ></span>
                 </div>
-
+                <!--我的回复分页符-->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li th:if="${replyPagination.showFirstPage}">
+                            <a th:href="@{'/profile/'+${section}(page=${1})}" aria-label="Previous">
+                                <span aria-hidden="true"><<</span>
+                            </a>
+                        </li>
+                        <li th:if="${replyPagination.showPrevious}">
+                            <a th:href="@{'/profile/'+${section}(page=${(replyPagination.page)-1})}" aria-label="Previous">
+                                <span aria-hidden="true"><</span>
+                            </a>
+                        </li>
+                        <li th:each="page:${replyPagination.pages}" th:class="${replyPagination.page==page}? 'active':''">
+                            <a th:href="@{'/profile/'+${section}(page=${page})}" th:text="${page}"></a>
+                        </li>
+                        <li th:if="${replyPagination.shownext}">
+                            <a th:href="@{'/profile/'+${section}(page=${replyPagination.page+1})}" aria-label="Next">
+                                <span aria-hidden="true">></span>
+                            </a>
+                        </li>
+                        <li th:if="${replyPagination.showEndPage}">
+                            <a th:href="@{'/profile/'+${section}(page=${replyPagination.totalpage})}" aria-label="Next">
+                                <span aria-hidden="true">>></span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12" style="margin-top: 20px">
@@ -107,7 +134,7 @@
             data: JSON.stringify(para),
             contentType: 'application/json;charset=utf-8',
             success: function (response) {
-
+                    window
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {//请求失败处理函数
                 console.log("请求失败,请检查");

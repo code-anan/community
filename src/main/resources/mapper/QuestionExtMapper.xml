@@ -32,4 +32,27 @@
         where ID != #{id,jdbcType=INTEGER}
         and TAG REGEXP #{tag}
     </select>
+    <select id="countBySearch" parameterType="com.weilong.community.dto.QuestionQueryDto" resultType="java.lang.Integer">
+        select
+        count(1)
+        from QUESTION
+        <where>
+            <if test="search !=null">
+                and title REGEXP #{search}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectListBySearch" parameterType="com.weilong.community.dto.QuestionQueryDto" resultMap="BaseResultMap">
+        select
+        *
+        from QUESTION
+        <where>
+            <if test="search !=null">
+                and title REGEXP #{search}
+            </if>
+        </where>
+        order by GMT_CREATE desc
+        limit #{offset}, #{size}
+    </select>
 </mapper>

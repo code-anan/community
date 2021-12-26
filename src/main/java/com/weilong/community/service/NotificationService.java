@@ -1,6 +1,8 @@
 package com.weilong.community.service;
 
+import com.github.pagehelper.PageHelper;
 import com.weilong.community.dto.NotificationDto;
+import com.weilong.community.dto.ReplyPagination;
 import com.weilong.community.enums.NotificationEnum;
 import com.weilong.community.enums.NotificationStatusEnum;
 import com.weilong.community.mapper.CommentMapper;
@@ -25,7 +27,9 @@ public class NotificationService {
     private UserMapper userMapper;
     @Autowired
     private CommentMapper commentMapper;
-    public List<NotificationDto> getUnreadNotification(User user) {
+
+    public List<NotificationDto> getNotificationList(User user, Integer page, Integer size) {
+        PageHelper.startPage(page,size);
         NotificationExample example = new NotificationExample();
         example.createCriteria().andReceiverEqualTo(user.getId());
         example.setOrderByClause("GMTCREATE desc");
@@ -74,5 +78,23 @@ public class NotificationService {
         example.createCriteria().andReceiverEqualTo(user.getId());
         List<Notification> notifications = notificationMapper.selectByExample(example);
         return notifications.size();
+    }
+    //根据用户获取分页信息
+    public ReplyPagination getReplyPagination(User user, Integer page, Integer size) {
+        NotificationExample example = new NotificationExample();
+        example.createCriteria().andReceiverEqualTo(user.getId());
+        example.setOrderByClause("GMTCREATE desc");
+        example.setOrderByClause("STATUS");
+        List<Notification> notifications = notificationMapper.selectByExample(example);
+        int totalsize = notifications.size();
+        int totalpage;
+        if(totalsize / size==0){
+            totalpage=totalsize / size;
+        }else{
+            totalpage=totalsize / size+1;
+        }
+        ReplyPagination pagination = new ReplyPagination();
+        pagination.setPagination(totalpage,page);
+        return pagination;
     }
 }

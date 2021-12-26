@@ -2,6 +2,7 @@ package com.weilong.community.service;
 
 import com.weilong.community.dto.PaginationDto;
 import com.weilong.community.dto.QuestionDto;
+import com.weilong.community.dto.QuestionQueryDto;
 import com.weilong.community.exception.BusinessException;
 import com.weilong.community.mapper.QuestionExtMapper;
 import com.weilong.community.mapper.QuestionMapper;
@@ -13,7 +14,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -33,10 +33,18 @@ public class QuestionService {
     private UserMapper userMapper;
 
     //获取所有问题列表
-    public PaginationDto getlist(Integer page, Integer size) {
+    public PaginationDto getlist(String search, Integer page, Integer size) {
+
+        if(StringUtils.isNoneBlank(search)){
+            String[] split = search.split(" ");
+            search = Arrays.stream(split).collect(Collectors.joining("|"));
+        }
+
         PaginationDto paginationDto = new PaginationDto();
         Integer totalpage;//总页数
-        Integer count = (int) questionMapper.countByExample(new QuestionExample());
+        QuestionQueryDto queryDto = new QuestionQueryDto();
+        queryDto.setSearch(search);
+        Integer count =  questionExtMapper.countBySearch(queryDto);
         if (count / size == 0) {
             totalpage = count / size;
         } else {
@@ -49,9 +57,9 @@ public class QuestionService {
         }
         paginationDto.setPagination(totalpage, page);
         Integer offset = size * (page - 1);
-        QuestionExample questionExample = new QuestionExample();
-        questionExample.setOrderByClause("GMT_CREATE desc");
-        List<Question> questionList = questionMapper.selectByExampleWithBLOBsWithRowbounds(questionExample, new RowBounds(offset, size));
+        queryDto.setOffset(offset);
+        queryDto.setSize(size);
+        List<Question> questionList = questionExtMapper.selectListBySearch(queryDto);
         List<QuestionDto> questionDtoList = new ArrayList<>();
         for (Question question : questionList) {
             User user = userMapper.selectByPrimaryKey(question.getAuthor());

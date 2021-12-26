@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class GithubProvider {
     //获取getAccessToken
-    public String getAccessToken(AccessTokenDTO accessTokenDTO) {
+    public String  getAccessToken(AccessTokenDTO accessTokenDTO) {
         MediaType mediaType = MediaType.get("application/json; charset=utf-8");
 
         OkHttpClient client = new OkHttpClient();
