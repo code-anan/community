@@ -1,8 +1,10 @@
 package com.weilong.community.provider;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.weilong.community.dto.AccessTokenDTO;
 import com.weilong.community.dto.GithubUserDTO;
+import net.sf.jsqlparser.expression.JsonAggregateFunction;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
 
@@ -37,7 +39,10 @@ public class GithubProvider {
                 .build();
         try (Response response = client.newCall(request).execute()) {
             String string = response.body().string();
+            JSONObject jsonObject = JSON.parseObject(string);
+            String name = (String) jsonObject.get("login");
             GithubUserDTO githubUserDTO = JSON.parseObject(string, GithubUserDTO.class);
+            githubUserDTO.setName(name);
             return githubUserDTO;
         } catch (Exception e) {
             e.printStackTrace();
