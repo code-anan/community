@@ -55,4 +55,18 @@
         order by GMT_CREATE desc
         limit #{offset}, #{size}
     </select>
+
+
+    <select id="selectQuestionlistByUserId"  resultMap="BaseResultMap">
+        select
+        *
+        from QUESTION
+        <where>
+            <if test="userid !=null">
+                and author = #{userid}
+            </if>
+        </where>
+        order by GMT_CREATE desc
+        limit #{offset}, #{size}
+    </select>
 </mapper>

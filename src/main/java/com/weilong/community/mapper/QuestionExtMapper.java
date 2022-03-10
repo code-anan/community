@@ -17,4 +17,6 @@ public interface QuestionExtMapper {
     Integer countBySearch(QuestionQueryDto queryDto);
 
     List<Question> selectListBySearch(QuestionQueryDto queryDto);
+
+    List<Question> selectQuestionlistByUserId(Integer userid, Integer offset, Integer size);
 }

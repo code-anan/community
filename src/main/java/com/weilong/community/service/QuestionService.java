@@ -100,7 +100,7 @@ public class QuestionService {
         Integer offset = size * (page - 1);
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria().andAuthorEqualTo(userid);
-        List<Question> questionList = questionMapper.selectQuestionlistByUserId(userid,offset,size);
+        List<Question> questionList = questionExtMapper.selectQuestionlistByUserId(userid,offset,size);
         List<QuestionDto> questionDtoList = new ArrayList<>();
         for (Question question : questionList) {
             User user = userMapper.selectByPrimaryKey(question.getAuthor());
