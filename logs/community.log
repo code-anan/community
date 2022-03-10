@@ -1,0 +1,19 @@
+2022-03-10 09:06:22.469  INFO 8956 --- [restartedMain] c.w.community.CommunityApplication       : Starting CommunityApplication using Java 1.8.0_301 on DESKTOP-AUTG1NJ with PID 8956 (D:\Myproject\community\target\classes started by Admin in D:\Myproject\community)
+2022-03-10 09:06:22.485  INFO 8956 --- [restartedMain] c.w.community.CommunityApplication       : No active profile set, falling back to default profiles: default
+2022-03-10 09:06:22.953  INFO 8956 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-03-10 09:06:22.953  INFO 8956 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-03-10 09:06:31.232  INFO 8956 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-03-10 09:06:31.288  INFO 8956 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-10 09:06:31.288  INFO 8956 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2022-03-10 09:06:31.482  INFO 8956 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-03-10 09:06:31.482  INFO 8956 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 8529 ms
+2022-03-10 09:06:32.045  INFO 8956 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-03-10 09:06:32.794  INFO 8956 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-03-10 09:06:32.810  INFO 8956 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/lwl'
+2022-03-10 09:06:40.105  INFO 8956 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-03-10 09:06:40.720  INFO 8956 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-03-10 09:06:40.813  INFO 8956 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-03-10 09:06:40.830  INFO 8956 --- [restartedMain] c.w.community.CommunityApplication       : Started CommunityApplication in 20.209 seconds (JVM running for 23.304)
+2022-03-10 09:07:22.407  INFO 8956 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-10 09:07:22.407  INFO 8956 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-03-10 09:07:22.409  INFO 8956 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
