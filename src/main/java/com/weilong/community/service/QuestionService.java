@@ -50,6 +50,9 @@ public class QuestionService {
         } else {
             totalpage = count / size + 1;
         }
+        if(totalpage<=1){
+            totalpage=1;
+        }
         if (page < 1) {
             page = 1;
         } else if (page > totalpage) {
@@ -85,17 +88,19 @@ public class QuestionService {
         } else {
             totalpage = count / size + 1;
         }
-        if (page < 1) {
+        if (page <= 1) {
             page = 1;
         } else if (page > totalpage) {
             page = totalpage;
         }
+        if(totalpage<=1){
+            totalpage=1;
+        }
         paginationDto.setPagination(totalpage, page);
         Integer offset = size * (page - 1);
-
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria().andAuthorEqualTo(userid);
-        List<Question> questionList = questionMapper.selectByExampleWithBLOBsWithRowbounds(questionExample, new RowBounds(offset, size));
+        List<Question> questionList = questionMapper.selectQuestionlistByUserId(userid,offset,size);
         List<QuestionDto> questionDtoList = new ArrayList<>();
         for (Question question : questionList) {
             User user = userMapper.selectByPrimaryKey(question.getAuthor());

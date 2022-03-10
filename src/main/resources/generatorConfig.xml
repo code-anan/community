@@ -9,13 +9,13 @@
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
-        <plugin type="com.github.pagehelper.PageInterceptor"></plugin>
+        <!--<plugin type="com.github.pagehelper.PageInterceptor"></plugin>-->
 
         <!--数据库配置-->
-        <jdbcConnection driverClass="org.h2.Driver"
-                        connectionURL="jdbc:h2:~/community"
-                        userId="sa"
-                        password="123">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/lwl"
+                        userId="root"
+                        password="233">
         </jdbcConnection>
 
         <!--Decimal和Numeric类型的数据更好的使用-->
