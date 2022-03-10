@@ -76,3 +76,318 @@
 2022-03-10 15:56:47.980  INFO 15352 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2022-03-10 15:56:47.980  INFO 15352 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2022-03-10 15:56:47.982  INFO 15352 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-03-10 16:18:11.974  INFO 11284 --- [restartedMain] c.w.community.CommunityApplication       : Starting CommunityApplication using Java 1.8.0_301 on DESKTOP-AUTG1NJ with PID 11284 (D:\Myproject\community\target\classes started by Admin in D:\Myproject\community)
+2022-03-10 16:18:11.978  INFO 11284 --- [restartedMain] c.w.community.CommunityApplication       : No active profile set, falling back to default profiles: default
+2022-03-10 16:18:12.070  INFO 11284 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-03-10 16:18:12.070  INFO 11284 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-03-10 16:18:14.921  INFO 11284 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-03-10 16:18:14.955  INFO 11284 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-10 16:18:14.956  INFO 11284 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2022-03-10 16:18:15.205  INFO 11284 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-03-10 16:18:15.206  INFO 11284 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3135 ms
+2022-03-10 16:18:15.296  INFO 11284 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-03-10 16:18:15.682  INFO 11284 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-03-10 16:18:15.688  INFO 11284 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/lwl'
+2022-03-10 16:18:17.106  INFO 11284 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-03-10 16:18:17.449  INFO 11284 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-03-10 16:18:17.511  INFO 11284 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-03-10 16:18:17.525  INFO 11284 --- [restartedMain] c.w.community.CommunityApplication       : Started CommunityApplication in 7.411 seconds (JVM running for 13.201)
+2022-03-10 16:18:35.062  INFO 11284 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-10 16:18:35.063  INFO 11284 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-03-10 16:18:35.066  INFO 11284 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-03-10 16:30:12.579  WARN 11284 --- [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+### The error may exist in file [D:\Myproject\community\target\classes\mapper\NotificationMapper.xml]
+### The error may involve com.weilong.community.mapper.NotificationMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into notification (id, notifier, receiver,        outerid, type, gmtcreate,        status)     values (?, ?, ?,        ?, ?, ?,        ?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+; Column 'id' cannot be null; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null]
+2022-03-10 16:30:17.890  WARN 11284 --- [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+### The error may exist in file [D:\Myproject\community\target\classes\mapper\NotificationMapper.xml]
+### The error may involve com.weilong.community.mapper.NotificationMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into notification (id, notifier, receiver,        outerid, type, gmtcreate,        status)     values (?, ?, ?,        ?, ?, ?,        ?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+; Column 'id' cannot be null; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null]
+2022-03-10 16:34:42.672  WARN 11284 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m25s108ms551µs100ns).
+2022-03-10 16:34:42.751  WARN 11284 --- [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+### The error may exist in file [D:\Myproject\community\target\classes\mapper\NotificationMapper.xml]
+### The error may involve com.weilong.community.mapper.NotificationMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into notification (id, notifier, receiver,        outerid, type, gmtcreate,        status)     values (?, ?, ?,        ?, ?, ?,        ?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+; Column 'id' cannot be null; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null]
+2022-03-10 16:34:46.657  WARN 11284 --- [http-nio-8080-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+### The error may exist in file [D:\Myproject\community\target\classes\mapper\NotificationMapper.xml]
+### The error may involve com.weilong.community.mapper.NotificationMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into notification (id, notifier, receiver,        outerid, type, gmtcreate,        status)     values (?, ?, ?,        ?, ?, ?,        ?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+; Column 'id' cannot be null; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null]
+2022-03-10 16:34:56.819  WARN 11284 --- [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+### The error may exist in file [D:\Myproject\community\target\classes\mapper\NotificationMapper.xml]
+### The error may involve com.weilong.community.mapper.NotificationMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into notification (id, notifier, receiver,        outerid, type, gmtcreate,        status)     values (?, ?, ?,        ?, ?, ?,        ?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+; Column 'id' cannot be null; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null]
+2022-03-10 16:39:06.109  INFO 11284 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-03-10 16:39:06.209  INFO 11284 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-03-10 16:39:14.975  INFO 16128 --- [restartedMain] c.w.community.CommunityApplication       : Starting CommunityApplication using Java 1.8.0_301 on DESKTOP-AUTG1NJ with PID 16128 (D:\Myproject\community\target\classes started by Admin in D:\Myproject\community)
+2022-03-10 16:39:14.980  INFO 16128 --- [restartedMain] c.w.community.CommunityApplication       : No active profile set, falling back to default profiles: default
+2022-03-10 16:39:15.074  INFO 16128 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-03-10 16:39:15.075  INFO 16128 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-03-10 16:39:17.323  INFO 16128 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-03-10 16:39:17.335  INFO 16128 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-10 16:39:17.335  INFO 16128 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2022-03-10 16:39:17.486  INFO 16128 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-03-10 16:39:17.486  INFO 16128 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2410 ms
+2022-03-10 16:39:17.537  INFO 16128 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-03-10 16:39:17.776  INFO 16128 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-03-10 16:39:17.783  INFO 16128 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/lwl'
+2022-03-10 16:39:18.776  INFO 16128 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-03-10 16:39:19.063  INFO 16128 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-03-10 16:39:19.112  INFO 16128 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-03-10 16:39:19.127  INFO 16128 --- [restartedMain] c.w.community.CommunityApplication       : Started CommunityApplication in 5.429 seconds (JVM running for 7.44)
+2022-03-10 16:40:08.269  INFO 16128 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-03-10 16:40:08.296  INFO 16128 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-03-10 16:40:15.624  INFO 12732 --- [restartedMain] c.w.community.CommunityApplication       : Starting CommunityApplication using Java 1.8.0_301 on DESKTOP-AUTG1NJ with PID 12732 (D:\Myproject\community\target\classes started by Admin in D:\Myproject\community)
+2022-03-10 16:40:15.628  INFO 12732 --- [restartedMain] c.w.community.CommunityApplication       : No active profile set, falling back to default profiles: default
+2022-03-10 16:40:15.711  INFO 12732 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-03-10 16:40:15.711  INFO 12732 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-03-10 16:40:17.335  INFO 12732 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-03-10 16:40:17.348  INFO 12732 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-10 16:40:17.348  INFO 12732 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2022-03-10 16:40:17.537  INFO 12732 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-03-10 16:40:17.537  INFO 12732 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1825 ms
+2022-03-10 16:40:17.588  INFO 12732 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-03-10 16:40:17.810  INFO 12732 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-03-10 16:40:17.816  INFO 12732 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/lwl'
+2022-03-10 16:40:18.771  INFO 12732 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-03-10 16:40:19.085  INFO 12732 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-03-10 16:40:19.133  INFO 12732 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-03-10 16:40:19.147  INFO 12732 --- [restartedMain] c.w.community.CommunityApplication       : Started CommunityApplication in 4.502 seconds (JVM running for 6.524)
+2022-03-10 16:40:25.062  INFO 12732 --- [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-10 16:40:25.063  INFO 12732 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-03-10 16:40:25.065  INFO 12732 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-03-10 16:40:31.405  WARN 12732 --- [http-nio-8080-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+### The error may exist in file [D:\Myproject\community\target\classes\mapper\NotificationMapper.xml]
+### The error may involve com.weilong.community.mapper.NotificationMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into notification (id, notifier, receiver,        outerid, type, gmtcreate,        status)     values (?, ?, ?,        ?, ?, ?,        ?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+; Column 'id' cannot be null; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null]
+2022-03-10 16:47:06.608  INFO 12732 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-03-10 16:47:06.618  INFO 12732 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-03-10 16:47:15.169  INFO 18352 --- [restartedMain] c.w.community.CommunityApplication       : Starting CommunityApplication using Java 1.8.0_301 on DESKTOP-AUTG1NJ with PID 18352 (D:\Myproject\community\target\classes started by Admin in D:\Myproject\community)
+2022-03-10 16:47:15.175  INFO 18352 --- [restartedMain] c.w.community.CommunityApplication       : No active profile set, falling back to default profiles: default
+2022-03-10 16:47:15.288  INFO 18352 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-03-10 16:47:15.291  INFO 18352 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-03-10 16:47:17.926  INFO 18352 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-03-10 16:47:17.938  INFO 18352 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-10 16:47:17.938  INFO 18352 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2022-03-10 16:47:18.091  INFO 18352 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-03-10 16:47:18.092  INFO 18352 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2800 ms
+2022-03-10 16:47:18.138  INFO 18352 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-03-10 16:47:18.396  INFO 18352 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-03-10 16:47:18.404  INFO 18352 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/lwl'
+2022-03-10 16:47:19.621  INFO 18352 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-03-10 16:47:19.979  INFO 18352 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-03-10 16:47:20.030  INFO 18352 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-03-10 16:47:20.048  INFO 18352 --- [restartedMain] c.w.community.CommunityApplication       : Started CommunityApplication in 6.135 seconds (JVM running for 8.709)
+2022-03-10 16:47:24.056  INFO 18352 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-10 16:47:24.056  INFO 18352 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-03-10 16:47:24.057  INFO 18352 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-03-10 16:47:29.100  WARN 18352 --- [http-nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NumberFormatException: For input string: "20220310-498702880"]
+2022-03-10 16:47:55.655  WARN 18352 --- [http-nio-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NumberFormatException: For input string: "20220310-498702880"]
+2022-03-10 16:48:32.411  INFO 18352 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-03-10 16:48:32.419  INFO 18352 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-03-10 16:48:40.090  INFO 16928 --- [restartedMain] c.w.community.CommunityApplication       : Starting CommunityApplication using Java 1.8.0_301 on DESKTOP-AUTG1NJ with PID 16928 (D:\Myproject\community\target\classes started by Admin in D:\Myproject\community)
+2022-03-10 16:48:40.096  INFO 16928 --- [restartedMain] c.w.community.CommunityApplication       : No active profile set, falling back to default profiles: default
+2022-03-10 16:48:40.172  INFO 16928 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-03-10 16:48:40.172  INFO 16928 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-03-10 16:48:41.914  INFO 16928 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-03-10 16:48:41.933  INFO 16928 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-10 16:48:41.933  INFO 16928 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2022-03-10 16:48:42.069  INFO 16928 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-03-10 16:48:42.069  INFO 16928 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1896 ms
+2022-03-10 16:48:42.111  INFO 16928 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-03-10 16:48:42.358  INFO 16928 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-03-10 16:48:42.364  INFO 16928 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/lwl'
+2022-03-10 16:48:43.572  INFO 16928 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-03-10 16:48:43.877  INFO 16928 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-03-10 16:48:43.929  INFO 16928 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-03-10 16:48:43.944  INFO 16928 --- [restartedMain] c.w.community.CommunityApplication       : Started CommunityApplication in 4.913 seconds (JVM running for 7.274)
+2022-03-10 16:48:59.645  INFO 16928 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-10 16:48:59.645  INFO 16928 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-03-10 16:48:59.647  INFO 16928 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-03-10 16:49:03.440  WARN 16928 --- [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NumberFormatException: For input string: "20220310-1193959466"]
+2022-03-10 16:50:01.702  INFO 16928 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-03-10 16:50:01.710  INFO 16928 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-03-10 16:50:10.366  INFO 13700 --- [restartedMain] c.w.community.CommunityApplication       : Starting CommunityApplication using Java 1.8.0_301 on DESKTOP-AUTG1NJ with PID 13700 (D:\Myproject\community\target\classes started by Admin in D:\Myproject\community)
+2022-03-10 16:50:10.372  INFO 13700 --- [restartedMain] c.w.community.CommunityApplication       : No active profile set, falling back to default profiles: default
+2022-03-10 16:50:10.467  INFO 13700 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-03-10 16:50:10.468  INFO 13700 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-03-10 16:50:12.744  INFO 13700 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-03-10 16:50:12.755  INFO 13700 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-10 16:50:12.756  INFO 13700 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2022-03-10 16:50:13.047  INFO 13700 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-03-10 16:50:13.047  INFO 13700 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2577 ms
+2022-03-10 16:50:13.107  INFO 13700 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-03-10 16:50:13.355  INFO 13700 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-03-10 16:50:13.360  INFO 13700 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/lwl'
+2022-03-10 16:50:14.314  INFO 13700 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-03-10 16:50:14.650  INFO 13700 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-03-10 16:50:14.695  INFO 13700 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-03-10 16:50:14.711  INFO 13700 --- [restartedMain] c.w.community.CommunityApplication       : Started CommunityApplication in 5.555 seconds (JVM running for 8.085)
+2022-03-10 16:52:28.692  INFO 13700 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-03-10 16:52:28.703  INFO 13700 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-03-10 16:52:36.509  INFO 7988 --- [restartedMain] c.w.community.CommunityApplication       : Starting CommunityApplication using Java 1.8.0_301 on DESKTOP-AUTG1NJ with PID 7988 (D:\Myproject\community\target\classes started by Admin in D:\Myproject\community)
+2022-03-10 16:52:36.514  INFO 7988 --- [restartedMain] c.w.community.CommunityApplication       : No active profile set, falling back to default profiles: default
+2022-03-10 16:52:36.631  INFO 7988 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-03-10 16:52:36.632  INFO 7988 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-03-10 16:52:38.983  INFO 7988 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-03-10 16:52:38.996  INFO 7988 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-10 16:52:38.996  INFO 7988 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2022-03-10 16:52:39.133  INFO 7988 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-03-10 16:52:39.133  INFO 7988 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2500 ms
+2022-03-10 16:52:39.175  INFO 7988 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-03-10 16:52:39.398  INFO 7988 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-03-10 16:52:39.405  INFO 7988 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/lwl'
+2022-03-10 16:52:40.469  INFO 7988 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-03-10 16:52:40.804  INFO 7988 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-03-10 16:52:40.849  INFO 7988 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-03-10 16:52:40.862  INFO 7988 --- [restartedMain] c.w.community.CommunityApplication       : Started CommunityApplication in 5.498 seconds (JVM running for 7.636)
+2022-03-10 16:52:44.670  INFO 7988 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-10 16:52:44.671  INFO 7988 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-03-10 16:52:44.672  INFO 7988 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-03-10 16:52:49.716  WARN 7988 --- [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+### The error may exist in file [D:\Myproject\community\target\classes\mapper\NotificationMapper.xml]
+### The error may involve com.weilong.community.mapper.NotificationMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into notification (id, notifier, receiver,        outerid, type, gmtcreate,        status)     values (?, ?, ?,        ?, ?, ?,        ?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+; Column 'id' cannot be null; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null]
+2022-03-10 16:55:51.421  INFO 7988 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-03-10 16:55:51.434  INFO 7988 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-03-10 16:56:01.283  INFO 16544 --- [restartedMain] c.w.community.CommunityApplication       : Starting CommunityApplication using Java 1.8.0_301 on DESKTOP-AUTG1NJ with PID 16544 (D:\Myproject\community\target\classes started by Admin in D:\Myproject\community)
+2022-03-10 16:56:01.289  INFO 16544 --- [restartedMain] c.w.community.CommunityApplication       : No active profile set, falling back to default profiles: default
+2022-03-10 16:56:01.449  INFO 16544 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-03-10 16:56:01.449  INFO 16544 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-03-10 16:56:03.740  INFO 16544 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-03-10 16:56:03.758  INFO 16544 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-10 16:56:03.759  INFO 16544 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2022-03-10 16:56:03.917  INFO 16544 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-03-10 16:56:03.918  INFO 16544 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2468 ms
+2022-03-10 16:56:03.963  INFO 16544 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-03-10 16:56:04.196  INFO 16544 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-03-10 16:56:04.202  INFO 16544 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/lwl'
+2022-03-10 16:56:05.143  INFO 16544 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-03-10 16:56:05.464  INFO 16544 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-03-10 16:56:05.519  INFO 16544 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-03-10 16:56:05.538  INFO 16544 --- [restartedMain] c.w.community.CommunityApplication       : Started CommunityApplication in 5.136 seconds (JVM running for 7.607)
+2022-03-10 16:56:07.970  INFO 16544 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-10 16:56:07.970  INFO 16544 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-03-10 16:56:07.972  INFO 16544 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-03-10 16:56:12.529  WARN 16544 --- [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+### The error may exist in file [D:\Myproject\community\target\classes\mapper\NotificationMapper.xml]
+### The error may involve com.weilong.community.mapper.NotificationMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into notification (id, notifier, receiver,        outerid, type, gmtcreate,        status)     values (?, ?, ?,        ?, ?, ?,        ?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+; Column 'id' cannot be null; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null]
+2022-03-10 16:56:25.212  WARN 16544 --- [http-nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+### The error may exist in file [D:\Myproject\community\target\classes\mapper\NotificationMapper.xml]
+### The error may involve com.weilong.community.mapper.NotificationMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into notification (id, notifier, receiver,        outerid, type, gmtcreate,        status)     values (?, ?, ?,        ?, ?, ?,        ?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+; Column 'id' cannot be null; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null]
+2022-03-10 16:57:44.961  INFO 16544 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-03-10 16:57:44.968  INFO 16544 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-03-10 16:57:58.381  INFO 12728 --- [restartedMain] c.w.community.CommunityApplication       : Starting CommunityApplication using Java 1.8.0_301 on DESKTOP-AUTG1NJ with PID 12728 (D:\Myproject\community\target\classes started by Admin in D:\Myproject\community)
+2022-03-10 16:57:58.388  INFO 12728 --- [restartedMain] c.w.community.CommunityApplication       : No active profile set, falling back to default profiles: default
+2022-03-10 16:57:58.499  INFO 12728 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-03-10 16:57:58.500  INFO 12728 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-03-10 16:58:01.545  INFO 12728 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-03-10 16:58:01.567  INFO 12728 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-10 16:58:01.568  INFO 12728 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2022-03-10 16:58:01.794  INFO 12728 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-03-10 16:58:01.794  INFO 12728 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3293 ms
+2022-03-10 16:58:01.977  INFO 12728 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-03-10 16:58:02.324  INFO 12728 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-03-10 16:58:02.331  INFO 12728 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/lwl'
+2022-03-10 16:58:03.830  INFO 12728 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-03-10 16:58:04.177  INFO 12728 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-03-10 16:58:04.235  INFO 12728 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-03-10 16:58:04.255  INFO 12728 --- [restartedMain] c.w.community.CommunityApplication       : Started CommunityApplication in 7.003 seconds (JVM running for 10.058)
+2022-03-10 16:58:17.303  INFO 12728 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-10 16:58:17.303  INFO 12728 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-03-10 16:58:17.304  INFO 12728 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-03-10 16:58:21.361  WARN 12728 --- [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+### The error may exist in file [D:\Myproject\community\target\classes\mapper\NotificationMapper.xml]
+### The error may involve com.weilong.community.mapper.NotificationMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into notification (id, notifier, receiver,        outerid, type, gmtcreate,        status)     values (?, ?, ?,        ?, ?, ?,        ?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+; Column 'id' cannot be null; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null]
+2022-03-10 17:03:16.895  INFO 12728 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-03-10 17:03:16.905  INFO 12728 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-03-10 17:03:24.145  INFO 18528 --- [restartedMain] c.w.community.CommunityApplication       : Starting CommunityApplication using Java 1.8.0_301 on DESKTOP-AUTG1NJ with PID 18528 (D:\Myproject\community\target\classes started by Admin in D:\Myproject\community)
+2022-03-10 17:03:24.175  INFO 18528 --- [restartedMain] c.w.community.CommunityApplication       : No active profile set, falling back to default profiles: default
+2022-03-10 17:03:24.361  INFO 18528 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-03-10 17:03:24.363  INFO 18528 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-03-10 17:03:26.363  INFO 18528 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-03-10 17:03:26.377  INFO 18528 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-10 17:03:26.377  INFO 18528 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2022-03-10 17:03:26.542  INFO 18528 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-03-10 17:03:26.543  INFO 18528 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2178 ms
+2022-03-10 17:03:26.604  INFO 18528 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-03-10 17:03:26.906  INFO 18528 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-03-10 17:03:26.913  INFO 18528 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/lwl'
+2022-03-10 17:03:28.079  INFO 18528 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-03-10 17:03:28.381  INFO 18528 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-03-10 17:03:28.432  INFO 18528 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-03-10 17:03:28.448  INFO 18528 --- [restartedMain] c.w.community.CommunityApplication       : Started CommunityApplication in 5.323 seconds (JVM running for 7.628)
+2022-03-10 17:03:32.700  INFO 18528 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-10 17:03:32.701  INFO 18528 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-03-10 17:03:32.702  INFO 18528 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-03-10 17:03:33.103  WARN 18528 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+### The error may exist in file [D:\Myproject\community\target\classes\mapper\NotificationMapper.xml]
+### The error may involve com.weilong.community.mapper.NotificationMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into notification (id, notifier, receiver,        outerid, type, gmtcreate,        status)     values (?, ?, ?,        ?, ?, ?,        ?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null
+; Column 'id' cannot be null; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'id' cannot be null]
+2022-03-10 17:04:33.549  INFO 18528 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-03-10 17:04:33.561  INFO 18528 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-03-10 17:04:41.060  INFO 17148 --- [restartedMain] c.w.community.CommunityApplication       : Starting CommunityApplication using Java 1.8.0_301 on DESKTOP-AUTG1NJ with PID 17148 (D:\Myproject\community\target\classes started by Admin in D:\Myproject\community)
+2022-03-10 17:04:41.064  INFO 17148 --- [restartedMain] c.w.community.CommunityApplication       : No active profile set, falling back to default profiles: default
+2022-03-10 17:04:41.158  INFO 17148 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-03-10 17:04:41.158  INFO 17148 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-03-10 17:04:43.009  INFO 17148 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-03-10 17:04:43.023  INFO 17148 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-10 17:04:43.024  INFO 17148 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2022-03-10 17:04:43.196  INFO 17148 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-03-10 17:04:43.197  INFO 17148 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2038 ms
+2022-03-10 17:04:43.250  INFO 17148 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-03-10 17:04:43.474  INFO 17148 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-03-10 17:04:43.480  INFO 17148 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/lwl'
+2022-03-10 17:04:44.517  INFO 17148 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-03-10 17:04:44.847  INFO 17148 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-03-10 17:04:44.908  INFO 17148 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-03-10 17:04:44.934  INFO 17148 --- [restartedMain] c.w.community.CommunityApplication       : Started CommunityApplication in 5.072 seconds (JVM running for 7.323)
+2022-03-10 17:04:52.199  INFO 17148 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-10 17:04:52.199  INFO 17148 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-03-10 17:04:52.200  INFO 17148 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
